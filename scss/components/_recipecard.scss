@@ -1,0 +1,42 @@
+@forward '../global';
+@use '../function' as f;
+
+.recipe-card {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border-radius: 10px;
+  width: f.rem(250);
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  cursor: pointer;
+  transition: transform 250ms ease-in-out;
+
+  &:hover {
+    transform: translateY(-5%);
+
+    & .recipe-card__body {
+      background-color: var(--color-accent);
+    }
+  }
+
+  &__body {
+    display: flex;
+    justify-content: center;
+    place-items: center;
+    height: f.rem(80);
+    padding: f.rem(10);
+    background-color: var(--color-white);
+    transition: background-color 250ms ease-in-out;
+  }
+
+  &__img {
+    height: f.rem(250);
+    object-fit: cover;
+  }
+
+  &__name {
+    text-align: center;
+    font-size: f.rem(16);
+    font-weight: var(--fw-bold);
+  }
+}
