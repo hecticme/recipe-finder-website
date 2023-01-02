@@ -1,0 +1,21 @@
+@forward 'variables';
+
+html {
+  box-sizing: border-box;
+  font-size: 100%;
+  font-family: var(--main-font);
+}
+
+*,
+*::after,
+*::before {
+  box-sizing: inherit;
+  margin: 0;
+  padding: 0;
+}
+
+a,
+a:active,
+a:visited {
+  text-decoration: none;
+}

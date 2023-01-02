@@ -1,0 +1,16 @@
+@use '../function' as f;
+
+:root {
+  // Fonts
+  --main-font: 'Jost', sans-serif;
+  --fw-regular: 400;
+  --fw-bold: 700;
+  --fs-small: f.rem(16);
+  --fs-medium: f.rem(20);
+
+  // Color
+  --color-black: hsl(0, 0%, 8%);
+  --color-accent: hsl(45, 99%, 64%);
+  --color-white: hsl(0, 0%, 100%);
+  --color-background: hsl(0, 0%, 95%);
+}

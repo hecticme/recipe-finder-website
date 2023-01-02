@@ -4,10 +4,75 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite App</title>
+    <title>Recipe Finder App</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Jost:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <script
+      src="https://kit.fontawesome.com/9610edf201.js"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="scss/style.scss" />
+    <script defer src="/main.js"></script>
   </head>
+
   <body>
-    <div id="app"></div>
-    <script type="module" src="/main.js"></script>
+    <header class="search-bar">
+      <label for="recipe"></label>
+      <input
+        type="text"
+        placeholder="Find your recipes"
+        id="recipe-input"
+        class="search__input"
+      />
+      <button id="search-btn" class="search__btn">
+        <i class="fa-solid fa-magnifying-glass"></i>
+      </button>
+    </header>
+
+    <main class="recipe-layout">
+      <div class="recipe-card" data-id="1">
+        <img
+          src="${meal.strMealThumb}"
+          alt="${meal.strMeal}"
+          class="recipe-card__img"
+          draggable="false"
+        />
+        <div class="recipe-card__body">
+          <p class="recipe-card__name">meal</p>
+        </div>
+      </div>
+    </main>
+
+    <div class="recipe-modal">
+      <section class="recipe-modal__information-container">
+        <div class="recipe-modal__close-btn">
+          <i class="fa-solid fa-xmark"></i>
+        </div>
+        <img src="" alt="" class="recipe-modal__img" />
+        <h2 class="recipe-modal__name">Something good</h2>
+        <div class="recipe-modal__body">
+          <h3 class="recipe-modal__ingridient"></h3>
+          <ul class="recipe-modal__ingridient-list">
+            <li></li>
+            <li></li>
+            <li></li>
+          </ul>
+        </div>
+      </section>
+      <section class="recipe-modal__instruction-container">
+        <ul class="recipe-modal__instruction-list">
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+        </ul>
+      </section>
+    </div>
+
+    <div class="overlay"></div>
   </body>
 </html>
