@@ -2,6 +2,13 @@
 @forward 'global';
 @use 'function' as f;
 
+body {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  background-color: var(--color-background);
+}
+
 .overlay {
   position: fixed;
   z-index: 2;

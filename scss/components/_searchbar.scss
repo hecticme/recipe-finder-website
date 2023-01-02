@@ -2,7 +2,6 @@
 @use '../function' as f;
 
 .search-bar {
-  margin-inline: auto;
   padding-block-start: f.rem(100);
   display: flex;
   justify-content: center;
@@ -14,7 +13,7 @@
     width: clamp(f.rem(200), 3.4rem + 45.4vw, f.rem(600));
     border: none;
     border-radius: 5px;
-    font-size: var(--fs-small);
+    font-size: f.rem(16);
     font-family: inherit;
     position: relative;
   }
