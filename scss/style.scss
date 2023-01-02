@@ -1,5 +1,6 @@
 @forward 'components';
 @forward 'global';
+@use 'function' as f;
 
 .overlay {
   position: fixed;
@@ -16,4 +17,14 @@
     opacity: 1;
     pointer-events: auto;
   }
+}
+
+.recipe-layout {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  width: min(f.rem(1280), 100% - f.rem(40));
+  margin-inline: auto;
+  margin-block: f.rem(40);
+  gap: f.rem(30);
 }
