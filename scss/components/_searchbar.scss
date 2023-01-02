@@ -1,0 +1,40 @@
+@forward '../global';
+@use '../function' as f;
+
+.search-bar {
+  margin-inline: auto;
+  padding-block-start: f.rem(100);
+  display: flex;
+  justify-content: center;
+  gap: f.rem(5);
+
+  &__input {
+    height: f.rem(40);
+    padding: f.rem(10);
+    width: clamp(f.rem(200), 3.4rem + 45.4vw, f.rem(600));
+    border: none;
+    border-radius: 5px;
+    font-size: var(--fs-small);
+    font-family: inherit;
+    position: relative;
+  }
+
+  &__submit-btn {
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    background-color: var(--color-accent);
+    color: var(--color-black);
+    border: none;
+    border-radius: 5px;
+    height: f.rem(40);
+    aspect-ratio: 1 / 1;
+    padding-inline: f.rem(10);
+    cursor: pointer;
+  }
+}
+
+.not-found {
+  font-size: f.rem(30);
+  color: var(--color-accent);
+  text-align: center;
+  line-height: 1.5;
+}

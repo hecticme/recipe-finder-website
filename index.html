@@ -21,26 +21,21 @@
 
   <body>
     <header class="search-bar">
-      <label for="recipe"></label>
+      <label for="user-input"></label>
       <input
         type="text"
         placeholder="Find your recipes"
-        id="recipe-input"
-        class="search__input"
+        id="user-input"
+        class="search-bar__input"
       />
-      <button id="search-btn" class="search__btn">
+      <button id="submit-btn" class="search-bar__submit-btn">
         <i class="fa-solid fa-magnifying-glass"></i>
       </button>
     </header>
 
     <main class="recipe-layout">
       <div class="recipe-card" data-id="1">
-        <img
-          src="${meal.strMealThumb}"
-          alt="${meal.strMeal}"
-          class="recipe-card__img"
-          draggable="false"
-        />
+        <img src="" alt="" class="recipe-card__img" draggable="false" />
         <div class="recipe-card__body">
           <p class="recipe-card__name">meal</p>
         </div>
