@@ -17,6 +17,9 @@ userInput.addEventListener('keypress', (e) => {
 // Find recipes logic
 async function findRecipes() {
   const input = userInput.value.trim();
+  if (!input) {
+    return;
+  }
   const url = 'https://www.themealdb.com/api/json/v1/1/search.php?s=';
   const res = await fetch(url + input);
   const recipes = await res.json();
