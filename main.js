@@ -50,8 +50,15 @@ recipeLayout.addEventListener('click', openInstruction);
 
 function openInstruction(e) {
   e.preventDefault();
-  const recipeId = e.target.parentElement.dataset.id;
-  getInstruction(recipeId);
+  if (e.target.parentElement.classList.contains('recipe-card')) {
+    const recipeId = e.target.parentElement.dataset.id;
+    getInstruction(recipeId);
+  } else if (
+    e.target.parentElement.parentElement.classList.contains('recipe-card')
+  ) {
+    const recipeId = e.target.parentElement.parentElement.dataset.id;
+    getInstruction(recipeId);
+  }
 }
 
 async function getInstruction(id) {
