@@ -1,12 +1,13 @@
-@forward 'components';
-@forward 'global';
-@use 'function' as f;
+@forward "components";
+@forward "global";
+@use "function" as f;
 
 body {
   display: flex;
   flex-flow: column nowrap;
   align-items: center;
   background-color: var(--color-background);
+  font-family: var(--main-font);
 }
 
 .overlay {
