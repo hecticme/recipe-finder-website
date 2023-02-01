@@ -1,0 +1,58 @@
+@use "sass:math";
+@use "sass:string";
+
+// -- px to rem, em function
+@function rem($pixel) {
+  // devide for 16 and return rem unit
+  @if math.is-unitless($pixel) {
+    @return math.div($pixel, 16) * 1rem;
+  } @else {
+    @error "The rem function should receive a unitless number";
+  }
+}
+
+@function em($pixel) {
+  // devide for 16 and return em unit
+  @if math.is-unitless($pixel) {
+    @return math.div($pixel, 16) * 1em;
+  } @else {
+    @error "The em function should receive a unitless number";
+  }
+}
+// -- End of px to rem, em function
+
+// -- Strip unit function
+@function strip-unit($number) {
+  @return math.div($number, ($number * 0 + 1));
+}
+// -- End of Strip unit function
+
+// -- Fluid scale function
+@function fluid($min-vw, $max-vw, $min-value, $max-value) {
+  @if math.is-unitless($min-vw) or
+    math.is-unitless($max-vw) or
+    math.is-unitless($min-value) or
+    math.is-unitless($max-value)
+  {
+    @error "Please include the value's unit";
+  }
+  // Change to rem if the input is in "px"
+  @if string.index(string.quote(#{$min-vw}), "px") {
+    $min-vw: rem(strip-unit($min-vw));
+  }
+  @if string.index(string.quote(#{$max-vw}), "px") {
+    $max-vw: rem(strip-unit($max-vw));
+  }
+  @if string.index(string.quote(#{$min-value}), "px") {
+    $min-value: rem(strip-unit($min-value));
+  }
+  @if string.index(string.quote(#{$max-value}), "px") {
+    $max-value: rem(strip-unit($max-value));
+  }
+
+  $factor: calc(1 / ($max-vw - $min-vw) * ($max-value - $min-value));
+  $calc-value: calc($min-value - ($min-vw * $factor) + 100vw * $factor);
+
+  @return clamp($min-value, $calc-value, $max-value);
+}
+// -- End of Fluid scale function

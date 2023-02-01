@@ -1,6 +1,6 @@
 @forward "components";
 @forward "global";
-@use "function" as f;
+@use "utils" as u;
 
 body {
   display: flex;
@@ -31,8 +31,8 @@ body {
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
-  width: min(f.rem(1280), 100% - f.rem(40));
+  width: min(u.rem(1280), 100% - u.rem(40));
   margin-inline: auto;
-  margin-block: f.rem(40);
-  gap: f.rem(30);
+  margin-block: u.rem(40);
+  gap: u.rem(30);
 }

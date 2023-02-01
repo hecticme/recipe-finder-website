@@ -1,19 +1,19 @@
-@forward '../global';
-@use '../function' as f;
+@forward "../global";
+@use "../utils" as u;
 
 .search-bar {
-  padding-block-start: f.rem(100);
+  padding-block-start: u.rem(100);
   display: flex;
   justify-content: center;
-  gap: f.rem(5);
+  gap: u.rem(5);
 
   &__input {
-    height: f.rem(40);
-    padding: f.rem(10);
-    width: clamp(f.rem(200), 3.4rem + 45.4vw, f.rem(600));
+    height: u.rem(40);
+    padding: u.rem(10);
+    width: u.fluid(320px, 1280px, 200px, 600px);
     border: none;
     border-radius: 5px;
-    font-size: f.rem(16);
+    font-size: u.rem(16);
     font-family: inherit;
     position: relative;
   }
@@ -24,15 +24,15 @@
     color: var(--color-black);
     border: none;
     border-radius: 5px;
-    height: f.rem(40);
+    height: u.rem(40);
     aspect-ratio: 1 / 1;
-    padding-inline: f.rem(10);
+    padding-inline: u.rem(10);
     cursor: pointer;
   }
 }
 
 .not-found {
-  font-size: f.rem(30);
+  font-size: u.rem(30);
   color: var(--color-accent);
   text-align: center;
   line-height: 1.5;

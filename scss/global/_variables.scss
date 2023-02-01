@@ -1,12 +1,12 @@
-@use '../function' as f;
+@use "../utils" as u;
 
 :root {
   // Fonts
-  --main-font: 'Jost', sans-serif;
+  --main-font: "Jost", sans-serif;
   --fw-regular: 400;
   --fw-bold: 700;
-  --fs-small: f.rem(16);
-  --fs-medium: f.rem(20);
+  --fs-small: u.rem(16);
+  --fs-medium: u.rem(20);
 
   // Color
   --color-black: hsl(0, 0%, 8%);
