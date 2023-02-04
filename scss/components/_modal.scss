@@ -74,6 +74,34 @@
     font-weight: var(--fw-bold);
   }
 
+  &__play-video {
+    display: flex;
+    justify-content: center;
+    place-items: center;
+    gap: u.rem(10);
+
+    background-color: var(--color-accent);
+    color: var(--color-black);
+    border-radius: 5px;
+    place-items: center;
+    height: u.rem(40);
+    width: u.rem(130);
+    transition: box-shadow 250ms ease-in-out, transform 250ms ease-in-out;
+    font-size: u.rem(18);
+    margin-block-end: u.rem(10);
+
+    &:hover {
+      box-shadow: rgba(100, 100, 111, 0.2) 0px 4px 20px 0px;
+      transform: translateY(u.rem(-2));
+    }
+
+    &--none {
+      color: red;
+      font-size: u.rem(18);
+      margin-block-end: u.rem(10);
+    }
+  }
+
   &__ingridient {
     font-size: u.rem(16);
     font-weight: var((--fw-bold));

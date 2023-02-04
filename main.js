@@ -1,13 +1,13 @@
 // Seacrh input logic
-const submitBtn = document.querySelector('#submit-btn');
-const userInput = document.querySelector('#user-input');
-const recipeLayout = document.querySelector('.recipe-layout');
-const recipeModal = document.querySelector('.recipe-modal');
-const overlay = document.querySelector('.overlay');
+const submitBtn = document.querySelector("#submit-btn");
+const userInput = document.querySelector("#user-input");
+const recipeLayout = document.querySelector(".recipe-layout");
+const recipeModal = document.querySelector(".recipe-modal");
+const overlay = document.querySelector(".overlay");
 
-submitBtn.addEventListener('click', findRecipes);
-userInput.addEventListener('keypress', (e) => {
-  if (e.key === 'Enter') {
+submitBtn.addEventListener("click", findRecipes);
+userInput.addEventListener("keypress", (e) => {
+  if (e.key === "Enter") {
     e.preventDefault;
     submitBtn.click();
   }
@@ -20,10 +20,10 @@ async function findRecipes() {
   if (!input) {
     return;
   }
-  const url = 'https://www.themealdb.com/api/json/v1/1/search.php?s=';
+  const url = "https://www.themealdb.com/api/json/v1/1/search.php?s=";
   const res = await fetch(url + input);
   const recipes = await res.json();
-  let result = '';
+  let result = "";
   if (recipes.meals) {
     recipes.meals.forEach((meal) => {
       result += `<div class="recipe-card" data-id="${meal.idMeal}">
@@ -46,15 +46,15 @@ async function findRecipes() {
 // End of find recipes logic
 
 // Open instruction details logic
-recipeLayout.addEventListener('click', openInstruction);
+recipeLayout.addEventListener("click", openInstruction);
 
 function openInstruction(e) {
   e.preventDefault();
-  if (e.target.parentElement.classList.contains('recipe-card')) {
+  if (e.target.parentElement.classList.contains("recipe-card")) {
     const recipeId = e.target.parentElement.dataset.id;
     getInstruction(recipeId);
   } else if (
-    e.target.parentElement.parentElement.classList.contains('recipe-card')
+    e.target.parentElement.parentElement.classList.contains("recipe-card")
   ) {
     const recipeId = e.target.parentElement.parentElement.dataset.id;
     getInstruction(recipeId);
@@ -69,13 +69,13 @@ async function getInstruction(id) {
   // Declare ingredients
   const ingredientName = [];
   for (const property in meal) {
-    if (property.startsWith('strIngredient') && meal[property]) {
+    if (property.startsWith("strIngredient") && meal[property]) {
       ingredientName.push(meal[property]);
     }
   }
   const ingredientMeasure = [];
   for (const property in meal) {
-    if (property.startsWith('strMeasure') && meal[property]) {
+    if (property.startsWith("strMeasure") && meal[property]) {
       ingredientMeasure.push(meal[property]);
     }
   }
@@ -85,26 +85,41 @@ async function getInstruction(id) {
   }
   const ingredientList = ingredientCombined
     .map((ele) => `<li>${ele}</li>`)
-    .join('');
+    .join("");
   // Render instruction
   let instructionArray;
   const filterRegex = /.?STEP\s\d+/;
-  if (meal.strInstructions.includes('STEP')) {
+  if (meal.strInstructions.includes("STEP")) {
     // remove linebreak
-    instructionArray = meal.strInstructions.replace(/(\r\n|\n|\r)/gm, '');
+    instructionArray = meal.strInstructions.replace(/(\r\n|\n|\r)/gm, "");
     instructionArray = instructionArray.split(filterRegex);
     instructionArray.splice(0, 1);
   } else {
     // remove linebreak
-    instructionArray = meal.strInstructions.replace(/(\r\n|\n|\r)/gm, '');
+    instructionArray = meal.strInstructions.replace(/(\r\n|\n|\r)/gm, "");
     instructionArray = instructionArray.split(/\d*\.\)?\s?\(?/);
     instructionArray.splice(instructionArray.length - 1, 1);
   }
   const instructionList = instructionArray
     .filter((ele) => ele)
     .map((ele) => `<li>${ele}</li>`)
-    .join('');
+    .join("");
   // Render result
+
+  let mealPlayVideo;
+  if (meal.strYoutube) {
+    mealPlayVideo = `<a 
+                      href="${meal.strYoutube}" 
+                      target="_blank" 
+                      class="recipe-modal__play-video">
+                        <i class="fa-solid fa-play"></i>
+                        <p>Play Video</p>
+                      </a>`;
+  } else {
+    mealPlayVideo =
+      "<p class=recipe-modal__play-video--none>No video available for this recipe</p>";
+  }
+
   const result = `<section class="recipe-modal__information-container">
         <div class="recipe-modal__close-btn">
           <i class="fa-solid fa-xmark"></i>
@@ -113,6 +128,7 @@ async function getInstruction(id) {
 
         <div class="recipe-modal__body">
           <h2 class="recipe-modal__name">${meal.strMeal}</h2>
+            ${mealPlayVideo}
           <h3 class="recipe-modal__ingridient">Ingridient</h3>
           <ul class="recipe-modal__ingridient-list">
             ${ingredientList}
@@ -125,25 +141,25 @@ async function getInstruction(id) {
         </ul>
       </section>`;
   recipeModal.innerHTML = result;
-  recipeModal.classList.add('show');
-  overlay.classList.add('show');
+  recipeModal.classList.add("show");
+  overlay.classList.add("show");
 }
 
 // Close modal logic
 function closeInstruction(e) {
   e.preventDefault();
-  recipeModal.classList.remove('show');
-  overlay.classList.remove('show');
+  recipeModal.classList.remove("show");
+  overlay.classList.remove("show");
 }
 
-recipeModal.addEventListener('click', (e) => {
+recipeModal.addEventListener("click", (e) => {
   if (
-    e.target.parentElement.classList.contains('recipe-modal__close-btn') ||
-    e.target.classList.contains('recipe-modal__close-btn')
+    e.target.parentElement.classList.contains("recipe-modal__close-btn") ||
+    e.target.classList.contains("recipe-modal__close-btn")
   ) {
     closeInstruction(e);
   }
 });
 
-overlay.addEventListener('click', closeInstruction);
+overlay.addEventListener("click", closeInstruction);
 // End of close modal logic
