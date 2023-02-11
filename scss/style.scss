@@ -10,6 +10,13 @@ body {
   font-family: var(--main-font);
 }
 
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: var(--color-black);
+    color: var(--color-white);
+  }
+}
+
 .overlay {
   position: fixed;
   z-index: 2;

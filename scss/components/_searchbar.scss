@@ -21,7 +21,6 @@
   &__submit-btn {
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
     background-color: var(--color-accent);
-    color: var(--color-black);
     border: none;
     border-radius: 5px;
     height: u.rem(40);
@@ -36,4 +35,13 @@
   color: var(--color-accent);
   text-align: center;
   line-height: 1.5;
+}
+
+@media (prefers-color-scheme: dark) {
+  .search-bar {
+    &__input {
+      background-color: var(--color-black-dim);
+      color: var(--color-white);
+    }
+  }
 }
